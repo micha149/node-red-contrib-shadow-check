@@ -1,4 +1,5 @@
 const intersect = require('ray-plane-intersection');
+const { negate } = require('gl-vec3');
 
 module.exports = (
     overhang,
@@ -10,27 +11,29 @@ module.exports = (
     let shadowShape = null;
 
     const sunDirection = [
-        Math.sin(phi) * Math.cos(theta),
-        Math.sin(phi),
-        -Math.cos(phi) * Math.cos(theta),
+        -Math.sin(phi) * Math.cos(theta),
+        Math.sin(theta),
+        -Math.cos(theta) * Math.cos(phi),
     ];
 
-    const topLeft = [-overhangOffsetLeft, overhangOffsetTop, overhang];
+    const shadowDirection = negate([], sunDirection);
+
+    const topLeft = [-overhangOffsetLeft, overhangOffsetTop, -overhang];
 
     const bottomLeft = intersect(
         [],
         topLeft,
-        sunDirection,
+        shadowDirection,
         [0, 0, 1],
         0,
     );
 
-    const topRight = [overhangOffsetRight, overhangOffsetTop, overhang];
+    const topRight = [overhangOffsetRight, overhangOffsetTop, -overhang];
 
     const bottomRight = intersect(
         [],
         topRight,
-        sunDirection,
+        shadowDirection,
         [0, 0, 1],
         0,
     );

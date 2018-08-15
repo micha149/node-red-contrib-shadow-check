@@ -24,7 +24,7 @@ module.exports = (RED) => {
         const handleIncomingMessage = pipe(
             parseAndNormalizePayload(azimuth),
             calculateShadow(
-                overhang,
+                overhang + inset,
                 overhangLeft + halfWidth,
                 overhangRight + halfWidth,
                 overhangTop + halfHeight,
