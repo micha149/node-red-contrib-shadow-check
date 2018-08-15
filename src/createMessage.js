@@ -1,6 +1,4 @@
-module.exports = topic => inShadow => ({
+module.exports = topic => windowCompletelyInShadow => ({
     topic,
-    payload: {
-        sunInWindow: !inShadow,
-    },
+    payload: !windowCompletelyInShadow,
 });

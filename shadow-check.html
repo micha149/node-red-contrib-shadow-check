@@ -4,6 +4,7 @@
         color: '#a6bbcf',
         defaults: {
             name: { value: '' },
+            topic: { value: '' },
             width: { value: '' },
             height: { value: '' },
             azimuth: { value: 0 },
@@ -59,8 +60,12 @@
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Topic</label>
+        <input type="text" id="node-input-topic">
+    </div>
 </script>
 
 <script type="text/x-red" data-help-name="shadow-check">
-    <p>A simple node that converts the message payloads into all shadow-check characters</p>
+    <p>A node that calculates if the sun shines into a window</p>
 </script>

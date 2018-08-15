@@ -19,6 +19,7 @@ module.exports = (RED) => {
         const overhangLeft = parseInt(config.overhangOffsetLeft, 10);
         const overhangRight = parseInt(config.overhangOffsetRight, 10);
         const overhangTop = parseInt(config.overhangOffsetTop, 10);
+        const topic = config.topic || 'sunInWindow';
 
         const handleIncomingMessage = pipe(
             parseAndNormalizePayload(azimuth),
@@ -29,7 +30,7 @@ module.exports = (RED) => {
                 overhangTop + halfHeight,
             ),
             checkIfWindowInShadow(width, height, inset),
-            createMessage(),
+            createMessage(topic),
             node.send.bind(node),
         );
 
