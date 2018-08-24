@@ -25,47 +25,155 @@
 
 <script type="text/x-red" data-template-name="shadow-check">
     <div class="form-row">
-        <label for="node-input-azimuth"><i class="icon-tag"></i> Aziumuth</label>
+        <label for="node-input-azimuth"><i class="fa fa-compass"></i> Aziumuth</label>
         <input type="number" min="0" max="360" id="node-input-azimuth">
     </div>
     <div class="form-row">
-        <label for="node-input-width"><i class="icon-tag"></i> Width (a)</label>
+        <label for="node-input-width"><i class="fa fa-arrows-h"></i> Width</label>
         <input type="number" id="node-input-width">
     </div>
     <div class="form-row">
-        <label for="node-input-height"><i class="icon-tag"></i> Height (b)</label>
+        <label for="node-input-height"><i class="fa fa-arrows-v"></i> Height</label>
         <input type="number" id="node-input-height">
     </div>
     <div class="form-row">
-        <label for="node-input-inset"><i class="icon-tag"></i> Inset (c)</label>
+        <label for="node-input-inset"><i class="fa fa-arrows-h"></i> Inset</label>
         <input type="number" id="node-input-inset">
     </div>
     <div class="form-row">
-        <label for="node-input-overhang"><i class="icon-tag"></i> Overhang (g)</label>
-        <input type="number" id="node-input-overhang">
-    </div>
-    <div class="form-row">
-        <label for="node-input-overhangOffsetLeft"><i class="icon-tag"></i> Overhang Offset Left (d)</label>
+        <label for="node-input-overhangOffsetLeft"><i class="fa fa-arrows-h"></i> Overhang Offset Left</label>
         <input type="number" id="node-input-overhangOffsetLeft">
     </div>
     <div class="form-row">
-        <label for="node-input-overhangOffsetRight"><i class="icon-tag"></i> Overhang Offset Right (e)</label>
+        <label for="node-input-overhangOffsetRight"><i class="fa fa-arrows-h"></i> Overhang Offset Right</label>
         <input type="number" id="node-input-overhangOffsetRight">
     </div>
     <div class="form-row">
-        <label for="node-input-overhangOffsetTop"><i class="icon-tag"></i> Overhang Offset Top (f)</label>
+        <label for="node-input-overhangOffsetTop"><i class="fa fa-arrows-v"></i> Overhang Offset Top</label>
         <input type="number" id="node-input-overhangOffsetTop">
     </div>
     <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <label for="node-input-overhang"><i class="fa fa-arrows-h"></i> Overhang</label>
+        <input type="number" id="node-input-overhang">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Topic</label>
+        <label for="node-input-name"><i class="fa fa-tasks"></i> Topic</label>
         <input type="text" id="node-input-topic">
     </div>
 </script>
 
 <script type="text/x-red" data-help-name="shadow-check">
-    <p>A node that calculates if the sun shines into a window</p>
+    <p>A node that calculates if the sun shines into a window.</p>
+
+    <h3>Output</h3>
+
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">boolean</span></dt>
+        <dd>
+            <p>Contains <code>true</code> if sun shines into the window.</p>
+        </dd>
+
+        <dt class="optional">topic <span class="property-type">string</span></dt>
+        <dd>
+            <p>An optional property that can be configured in the node.</p>
+        </dd>
+    </dl>
+
+    <h3>Input</h3>
+
+    <p>
+        The input of this node is aligned to the output of the
+        <a href="https://github.com/alisdairjsmyth/node-red-contrib-sunpos">Sun Position Node</a>.
+        So both can be used seamlessly, but it is also possible to calculate own input values.
+    </p>
+
+    <dl class="message-properties">
+        <dt>altitude <span class="property-type">float</span></dt>
+        <dd>
+            <p>The altitude angle of the sun in degrees.</p>
+        </dd>
+
+        <dt>azimuth <span class="property-type">float</span></dt>
+        <dd>
+            <p>The azimuth angle of the sun in degrees. North is <code>0</code> degrees.</p>
+        </dd>
+
+        <dt class="optional">sunInSky <span class="property-type">boolean</span></dt>
+        <dd>
+            <p>An optional boolean property which indicates that the sun is able to shine
+            into the window. If this value is <code>false</code>, all checks are omitted
+            and the resulting payload is also <code>false</code>.</p>
+
+            <p>This is useful to disable checks in the evening to force blinds to open, if
+            the sun is behind the horizon.</p>
+        </dd>
+    </dl>
+
+    <h3>Details</h3>
+    <p>The most configuration parts are measures of the window location. All measures will be
+    handled relative to each other, so it makes no differance if they are given in centimeters,
+    inches or handsbreadths as long as they are given in the same unit.<p>
+
+    <div style="padding: 10px;">
+        <img style="width: 100%;" src="/shadow-check/assets/measures.png" />
+    </div>
+
+    <dl>
+        <dt>Aziumuth</dt>
+        <dd>
+            The Azimuth angle of the window in degrees. For example: If your window faces exactly north
+            it will be <code>0</code>, if it faces exactly south it will be <code>180</code>.
+        </dd>
+
+        <dt>Width <em>(a)</em></dt>
+        <dd>
+            The width of the window
+        </dd>
+
+        <dt>Height <em>(b)</em></dt>
+        <dd>
+            The height of the window
+        </dd>
+
+        <dt>Inset <em>(c)</em></dt>
+        <dd>
+            The offset of the wall face and the actual window
+        </dd>
+
+        <dt>Overhang Offset Left <em>(d)</em></dt>
+        <dd>
+            When staying in front of your house. The distance from the left side
+            of the window to the left edge of the roof.
+        </dd>
+
+        <dt>Overhang Offset Right <em>(e)</em></dt>
+        <dd>
+            When staying in front of your house. The distance from the right side
+            of the window to the right edge of the roof.
+        </dd>
+
+        <dt>Overhang Offset Top <em>(f)</em></dt>
+        <dd>
+            When staying in front of your house. The height from the top edge of
+            the window to the bottom edge of the roof. Most roofs are sloping, keep
+            mind that also in this cases it is neccesary to meaure the virtical distance
+            to a projected line and not to the actual edge of the roof.
+        </dd>
+
+        <dt>Overhang size <em>(g)</em></dt>
+        <dd>
+            The vertical distance from the wall face to the roof edge.
+        </dd>
+    </dl>
+
+    <h3>References</h3>
+
+    <ul>
+        <li><a href="https://github.com/micha149/node-red-contrib-shadow-check" target="_blank">GitHub</a> - the nodes github repository</li>
+        <li><a href="https://github.com/alisdairjsmyth/node-red-contrib-sunpos">Sun Position</a> - useful in combination</li>
+    </ul>
 </script>

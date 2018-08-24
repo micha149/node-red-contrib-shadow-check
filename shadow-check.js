@@ -1,14 +1,22 @@
+const path = require('path');
+const { pipe } = require('ramda');
+const serveStatic = require('serve-static');
 const parseAndNormalizePayload = require('./src/parsePayload');
 const calculateShadow = require('./src/calculateShadow');
 const checkIfWindowInShadow = require('./src/checkIfWindowInShadow');
 const createMessage = require('./src/createMessage');
-const { pipe } = require('ramda');
 
 module.exports = (RED) => {
     function ShadowCheck(config) {
         RED.nodes.createNode(this, config);
-        const node = this;
 
+        RED.httpAdmin.use(
+            '/shadow-check/assets',
+            RED.auth.needsPermission('shadow-check.read'),
+            serveStatic(path.join(__dirname, 'assets')),
+        );
+
+        const node = this;
         const width = parseInt(config.width, 10);
         const height = parseInt(config.height, 10);
         const halfWidth = width / 2;
