@@ -46,4 +46,4 @@ module.exports = (RED) => {
     }
 
     RED.nodes.registerType('shadow-check', ShadowCheck);
-}
+};
