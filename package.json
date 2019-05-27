@@ -4,6 +4,7 @@
   "description": "A Node-RED node for checking if a window is covered by shadow",
   "main": "lib/",
   "scripts": {
+    "lint": "eslint shadow-check.js src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -19,11 +20,11 @@
     "point-in-polygon": "^1.0.1",
     "ramda": "^0.25.0",
     "ray-plane-intersection": "^1.0.0",
-    "serve-static": "^1.13.2"
+    "serve-static": "^1.14.1"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
+    "eslint": "^5.16.0",
     "eslint-config-brainbits": "^0.4.2",
-    "eslint-plugin-import": "^2.13.0"
+    "eslint-plugin-import": "^2.17.3"
   }
 }
