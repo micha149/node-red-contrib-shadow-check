@@ -7,14 +7,14 @@ const checkIfWindowInShadow = require('./src/checkIfWindowInShadow');
 const createMessage = require('./src/createMessage');
 
 module.exports = (RED) => {
+    RED.httpAdmin.use(
+        '/shadow-check/assets',
+        RED.auth.needsPermission('shadow-check.read'),
+        serveStatic(path.join(__dirname, 'assets')),
+    );
+
     function ShadowCheck(config) {
         RED.nodes.createNode(this, config);
-
-        RED.httpAdmin.use(
-            '/shadow-check/assets',
-            RED.auth.needsPermission('shadow-check.read'),
-            serveStatic(path.join(__dirname, 'assets')),
-        );
 
         const node = this;
         const width = parseInt(config.width, 10);
