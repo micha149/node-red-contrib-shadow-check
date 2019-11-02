@@ -5,7 +5,8 @@
   "main": "lib/",
   "scripts": {
     "lint": "eslint shadow-check.js src/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "release": "standard-version"
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-brainbits": "^0.4.2",
-    "eslint-plugin-import": "^2.17.3"
+    "eslint-plugin-import": "^2.17.3",
+    "standard-version": "^7.0.0"
   }
 }
