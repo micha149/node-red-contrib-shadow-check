@@ -19,7 +19,7 @@ jobs:
         npm run lint
       env:
         CI: true
-    - name: npm publish
+    - name: npm publish --dry-run
       run: |
         npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
         npm publish
