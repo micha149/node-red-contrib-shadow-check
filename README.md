@@ -4,7 +4,19 @@ A Node-RED node that checks whether the sun currently shines into a configured w
 
 The node combines a window's dimensions, azimuth, inset and roof overhang settings with sun position input. It can be used to decide whether blinds or roller shutters should be lowered.
 
-## Input
+## Installation
+
+This node can be installed by searching for `node-red-contrib-shadow-check` in the Palette or running the following command in your Node-RED user directory – typically `~/.node-red`.
+
+```
+$ npm install node-red-contrib-shadow-check
+```
+
+## Usage
+
+![usage example](./resources/example.png)
+
+### Input
 
 The node expects sun position data on `msg.payload`:
 
@@ -18,7 +30,7 @@ The node expects sun position data on `msg.payload`:
 
 `azimuth` and `altitude` are degrees. `sunInSky` is optional and defaults to `true`. If `sunInSky` is `false`, the output payload is `false`.
 
-## Output
+### Output
 
 The node preserves the incoming message and sets:
 
