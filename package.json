@@ -1,7 +1,8 @@
 {
-  "name": "red-contrib-shadow-check",
+  "name": "node-red-contrib-shadow-check",
   "version": "1.0.0",
   "description": "A Node-RED node for checking if a window is covered by shadow",
+  "keywords": ["node-red"],
   "main": "lib/",
   "scripts": {
     "lint": "eslint shadow-check.js src/",
@@ -9,7 +10,7 @@
     "release": "standard-version"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "node-red": {
     "nodes": {
       "shadow-check": "shadow-check.js"
