@@ -1,4 +1,4 @@
-# @micha149/node-red-contrib-shadow-check
+# node-red-contrib-shadow-check
 
 A Node-RED node that checks whether the sun currently shines into a configured window.
 
@@ -28,7 +28,7 @@ The node preserves the incoming message and sets:
 ## Development
 
 ```sh
-npm ci
+npm ci --ignore-scripts
 npm run lint
 npm run typecheck
 npm test

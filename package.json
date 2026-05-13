@@ -1,5 +1,5 @@
 {
-  "name": "@micha149/node-red-contrib-shadow-check",
+  "name": "node-red-contrib-shadow-check",
   "version": "1.0.0",
   "description": "A Node-RED node for checking if the sun shines into a window",
   "main": "dist/nodes/shadow-check/shadow-check.js",
