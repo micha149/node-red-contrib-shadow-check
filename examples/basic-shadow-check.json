@@ -1,0 +1,68 @@
+[
+  {
+    "id": "comment-shadow-check",
+    "type": "comment",
+    "z": "example-flow",
+    "name": "Shadow check example",
+    "info": "Injects a sample sun position and checks whether it shines into the configured window.",
+    "x": 210,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "inject-sun-position",
+    "type": "inject",
+    "z": "example-flow",
+    "name": "Sample sun position",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"azimuth\":180,\"altitude\":35,\"sunInSky\":true}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 140,
+    "wires": [["shadow-check"]]
+  },
+  {
+    "id": "shadow-check",
+    "type": "shadow-check",
+    "z": "example-flow",
+    "name": "Living room window",
+    "topic": "sunInWindow",
+    "width": "120",
+    "height": "140",
+    "azimuth": "180",
+    "inset": "10",
+    "overhang": "60",
+    "overhangOffsetLeft": "40",
+    "overhangOffsetRight": "40",
+    "overhangOffsetTop": "30",
+    "x": 430,
+    "y": 140,
+    "wires": [["debug-shadow-check"]]
+  },
+  {
+    "id": "debug-shadow-check",
+    "type": "debug",
+    "z": "example-flow",
+    "name": "sun in window?",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 660,
+    "y": 140,
+    "wires": []
+  }
+]

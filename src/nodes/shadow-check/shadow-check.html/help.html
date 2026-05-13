@@ -1,0 +1,113 @@
+<p>Checks whether the sun currently shines into a configured window.</p>
+
+<h3>Inputs</h3>
+<dl class="message-properties">
+  <dt>payload.altitude <span class="property-type">number</span></dt>
+  <dd>The altitude angle of the sun in degrees.</dd>
+
+  <dt>payload.azimuth <span class="property-type">number</span></dt>
+  <dd>
+    The azimuth angle of the sun in degrees. North is <code>0</code> degrees.
+  </dd>
+
+  <dt class="optional">
+    payload.sunInSky <span class="property-type">boolean</span>
+  </dt>
+  <dd>
+    If set to <code>false</code>, all geometry checks are skipped and the output
+    payload is <code>false</code>.
+  </dd>
+</dl>
+
+<h3>Outputs</h3>
+<dl class="message-properties">
+  <dt>payload <span class="property-type">boolean</span></dt>
+  <dd>
+    <code>true</code> if the sun shines into the configured window, otherwise
+    <code>false</code>.
+  </dd>
+
+  <dt>topic <span class="property-type">string</span></dt>
+  <dd>The configured output topic. Defaults to <code>sunInWindow</code>.</dd>
+</dl>
+
+<h3>Details</h3>
+<p>
+  The input format is compatible with sun position nodes such as
+  <a
+    href="https://github.com/alisdairjsmyth/node-red-contrib-sunpos"
+    target="_blank"
+    >Sun Position</a
+  >.
+</p>
+
+<p>
+  All window and overhang measurements must use the same unit. The node only
+  compares relative geometry, so centimeters, inches or any other unit can be
+  used consistently.
+</p>
+
+<div style="padding: 10px">
+  <img
+    style="width: 100%"
+    src="resources/@micha149/node-red-contrib-shadow-check/measures.png"
+  />
+</div>
+
+<dl>
+  <dt>Azimuth</dt>
+  <dd>
+    The azimuth angle of the window in degrees. A north-facing window is
+    <code>0</code>, a south-facing window is <code>180</code>.
+  </dd>
+
+  <dt>Width <em>(a)</em></dt>
+  <dd>The width of the window.</dd>
+
+  <dt>Height <em>(b)</em></dt>
+  <dd>The height of the window.</dd>
+
+  <dt>Inset <em>(c)</em></dt>
+  <dd>The offset between the wall face and the actual window.</dd>
+
+  <dt>Overhang Offset Left <em>(d)</em></dt>
+  <dd>
+    The distance from the left side of the window to the left edge of the roof.
+  </dd>
+
+  <dt>Overhang Offset Right <em>(e)</em></dt>
+  <dd>
+    The distance from the right side of the window to the right edge of the
+    roof.
+  </dd>
+
+  <dt>Overhang Offset Top <em>(f)</em></dt>
+  <dd>
+    The vertical distance from the top edge of the window to the bottom edge of
+    the roof. For sloping roofs, measure the vertical distance to a projected
+    line, not to the actual roof edge.
+  </dd>
+
+  <dt>Overhang <em>(g)</em></dt>
+  <dd>The horizontal distance from the wall face to the roof edge.</dd>
+</dl>
+
+<h3>References</h3>
+<ul>
+  <li>
+    <a
+      href="https://github.com/micha149/node-red-contrib-shadow-check"
+      target="_blank"
+      >GitHub</a
+    >
+    - the node's repository
+  </li>
+  <li>
+    <a
+      href="https://github.com/alisdairjsmyth/node-red-contrib-sunpos"
+      target="_blank"
+      >Sun Position</a
+    >
+    - useful in combination with this node
+  </li>
+</ul>
