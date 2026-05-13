@@ -1,0 +1,94 @@
+[
+  {
+    "query": "my worktree is kind of messy right now. i changed `slides/05-agents/slides.md`, renamed a helper in `components/CommitPlan.vue`, and there is also some unrelated formatting noise. can you figure out what should be committed together?",
+    "should_trigger": true
+  },
+  {
+    "query": "Can you write a good commit message for this? The change makes the review step validate include chains and missing assets so migrated Slidev chapters stop passing local checks but failing in the full deck.",
+    "should_trigger": true
+  },
+  {
+    "query": "I have a reusable cleanup in `src/git/`, a behavior change in the approval flow, and one tiny rename. I will probably cherry-pick part of this onto our release branch later. How would you split the commits?",
+    "should_trigger": true
+  },
+  {
+    "query": "please commit only the workshop slide changes from today, not the unrelated utils cleanup i also have lying around",
+    "should_trigger": true
+  },
+  {
+    "query": "I already know roughly what changed, I just need help polishing the commit message. Current draft is `Update git skill` and it is way too vague.",
+    "should_trigger": true
+  },
+  {
+    "query": "I think there should be two commits here: one for extracting the helper, one for requiring explicit approval before the commit happens. Can you sanity-check that split?",
+    "should_trigger": true
+  },
+  {
+    "query": "go through my staged and unstaged changes and turn them into clean commits, but keep anything that would be useful to backport in its own commit",
+    "should_trigger": true
+  },
+  {
+    "query": "Need a commit message only, no commit: we now keep mechanical renames separate from feature work so teams can cherry-pick the rename without dragging unfinished behavior changes onto the stabilization branch.",
+    "should_trigger": true
+  },
+  {
+    "query": "I said 'commit it' earlier, but before you do that I want to know how you would group the current changes. There's a bug fix, a helper rename, and some whitespace cleanup.",
+    "should_trigger": true
+  },
+  {
+    "query": "I have a dirty git worktree and I want one or more reviewable commits out of it. Can you decide what belongs together and what should stay out?",
+    "should_trigger": true
+  },
+  {
+    "query": "there are a few changes in `src/git/plan.ts` and `slides/06-workflows/slides.md`. i'm not asking you to commit yet, but tell me which parts belong in the same commit and give me draft messages.",
+    "should_trigger": true
+  },
+  {
+    "query": "why does `git cherry-pick` say the commit is empty?",
+    "should_trigger": false
+  },
+  {
+    "query": "can you explain the difference between `git commit` and `git commit --amend`?",
+    "should_trigger": false
+  },
+  {
+    "query": "I need help resolving a merge conflict in `slides.md` after rebasing onto main",
+    "should_trigger": false
+  },
+  {
+    "query": "please show me the last 5 commit messages on this branch so I can see the style",
+    "should_trigger": false
+  },
+  {
+    "query": "can you suggest a better PR title? the branch is about approval gating before writing commits",
+    "should_trigger": false
+  },
+  {
+    "query": "write release notes from the commits since last Thursday",
+    "should_trigger": false
+  },
+  {
+    "query": "I accidentally committed a secret and need to rewrite history before pushing",
+    "should_trigger": false
+  },
+  {
+    "query": "what would be a good branch name for the work that adds approval gating to our commit helper?",
+    "should_trigger": false
+  },
+  {
+    "query": "can you review this diff and tell me whether the code looks correct? no git operations needed",
+    "should_trigger": false
+  },
+  {
+    "query": "I want to squash the last three commits on my feature branch into one before opening the PR",
+    "should_trigger": false
+  },
+  {
+    "query": "Please generate a changelog entry from these merged PR titles and ticket IDs.",
+    "should_trigger": false
+  },
+  {
+    "query": "show me which files changed in the last commit and summarize the diff",
+    "should_trigger": false
+  }
+]

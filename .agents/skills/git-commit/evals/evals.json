@@ -1,0 +1,93 @@
+{
+  "skill_name": "git-commit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I changed `slides/03-git/slides.md` to add a new section about interactive rebase, and I also renamed `GetCommitMessage.ts` to `buildCommitMessage.ts` plus updated its imports. Can you turn that into sensible commits?",
+      "expected_output": "The skill proposes two commits, separating the mechanical rename from the slide content change, explains why the split is useful, and asks for confirmation before committing.",
+      "files": [],
+      "expectations": [
+        "The response proposes more than one commit rather than collapsing the rename and content change together.",
+        "The response treats the rename as a mechanical or refactor-style change separate from the slide content update.",
+        "The response includes a confirmation step before any commit is created."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Can you write me a commit message for this change: the review command now verifies include chains and asset references so migrated Slidev topics don't look fine on their own but break when rendered in the full deck. I only want the message, not the commit.",
+      "expected_output": "The skill returns only a commit message, keeps the subject within 80 characters, and wraps body lines to 100 characters or fewer.",
+      "files": [],
+      "expectations": [
+        "The response only drafts or improves a commit message and does not move into commit execution.",
+        "The subject line is 80 characters or fewer.",
+        "If a body is included, each body line is 100 characters or fewer."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My branch has three kinds of changes mixed together: a reusable lint cleanup in `components/`, a refactor that extracts git staging helpers, and the actual new approval gate for creating commits. I will probably want parts of this on another branch later. How would you split it into commits?",
+      "expected_output": "The skill proposes separate commits that preserve cherry-pick value, keeps mechanical cleanup and refactor work out of the behavior change commit, and presents a plan before any commit happens.",
+      "files": [],
+      "expectations": [
+        "The response proposes separate commits for at least two of the three change groups instead of one mixed commit.",
+        "The response explicitly preserves reuse, backport, or cherry-pick value as part of the split rationale.",
+        "The approval-gate behavior change is not grouped into the same commit as generic cleanup unless justified."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Go ahead and commit my current changes. They include a small bug fix, a whitespace cleanup in unrelated files, and a helper rename that might deserve its own commit.",
+      "expected_output": "Even though the user says to commit, the skill does not commit immediately. It first shows a proposed commit structure, excludes unrelated whitespace-only cleanup unless requested, and asks for confirmation.",
+      "files": [],
+      "expectations": [
+        "The response does not jump straight to creating a commit after the initial request.",
+        "The response shows a proposed commit structure before any commit action.",
+        "The response treats unrelated whitespace-only cleanup as separate or out of scope by default."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Please improve this commit message: 'Update git skill'. The actual change is that commits now require an explicit structure confirmation step before anything is written, because earlier the agent committed right after analysis and that made the history harder to review and reuse on release branches.",
+      "expected_output": "The skill rewrites the message into a concrete subject and an optional wrapped body that explains why the change matters.",
+      "files": [],
+      "expectations": [
+        "The rewritten subject is more specific than 'Update git skill'.",
+        "The rewritten message explains why the confirmation step matters, not just what changed.",
+        "If a body is included, each body line is 100 characters or fewer."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "I have one feature change plus a small refactor that renames `CommitPlanner` to `CommitPlanBuilder`. The rename is mechanical, but it touches the same files. Should this stay together or be split?",
+      "expected_output": "The skill recommends a separate refactor commit when the rename is independently reviewable, explains the reasoning, and presents the plan without creating commits.",
+      "files": [],
+      "expectations": [
+        "The response considers whether the mechanical rename is independently reviewable or reusable.",
+        "The response prefers a separate refactor commit when no dependency requires bundling it with the feature.",
+        "The response stays in planning mode rather than acting as if a commit has already been approved."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Write a commit message for this change: we now separate generic cleanup from behavior changes so teams can move the cleanup onto stabilization branches without taking unfinished product work with them.",
+      "expected_output": "The skill produces a concise subject and a prose body whose lines stay within 100 characters while emphasizing cherry-pickability.",
+      "files": [],
+      "expectations": [
+        "The message emphasizes reuse, backporting, or cherry-pick value rather than only reviewability.",
+        "The subject line is 80 characters or fewer.",
+        "If a body is included, each body line is 100 characters or fewer."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "I think there should be two commits here, one for the extracted helper and one for the approval flow, but I'm not fully sure. Can you look at the changes and suggest the split?",
+      "expected_output": "The skill validates or adjusts the proposed split, shows draft messages for each commit, and explicitly waits for confirmation before committing.",
+      "files": [],
+      "expectations": [
+        "The response evaluates the user's proposed split instead of blindly accepting it.",
+        "The response includes draft messages for the proposed commits or clearly equivalent commit descriptions.",
+        "The response does not treat the request for a suggested split as approval to commit."
+      ]
+    }
+  ]
+}

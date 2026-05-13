@@ -1,0 +1,1630 @@
+{
+  "exit_reason": "max_iterations (5)",
+  "original_description": "Plan, isolate, and apply clean Git commits that match the user's intent. Use this whenever the user wants to create commits, decide what belongs together, split a messy worktree into focused or cherry-pickable commits, choose what to stage, sanity-check a proposed commit split, or write or improve a commit message. Do not use it for general Git explanations, merge conflicts, changelogs, release notes, PR titles, branch names, or history rewriting unless the user is specifically asking how to structure or phrase commits.",
+  "best_description": "Use this skill for anything related to crafting commits: writing or polishing commit messages, splitting a dirty worktree into clean commits, deciding what to stage together, grouping or separating changes into reviewable commit units, sanity-checking a proposed commit split, or turning staged/unstaged changes into focused commits. Trigger even when the user says \"don't commit yet\" \u2014 planning commit structure and drafting messages counts. Key signals: \"commit message\", \"commit\", \"stage\", \"worktree\", \"what belongs together\", \"backport\", \"cherry-pick\", combined with intent to organize or describe changes. Do NOT trigger for changelogs, release notes, PR titles, branch names, general git Q&A, merge conflicts, or history rewriting (squash, rebase, amend) unless the request is specifically about structuring or wording new commits.",
+  "best_score": "6/8",
+  "best_train_score": "9/15",
+  "best_test_score": "6/8",
+  "final_description": "Trigger this skill any time the user's request involves creating, splitting, grouping, or planning git commits, or writing/improving commit messages. This covers: messy worktrees that need to become clean commits, figuring out what changes belong in the same commit, isolating backport-worthy changes, reviewing or sanity-checking a proposed commit split, drafting commit messages from a description of changes, and polishing vague or draft commit messages. Trigger even when the user lists specific files or describes diffs and asks how to organize them \u2014 that is commit planning. Trigger even if the user says \"don't commit yet.\" Do NOT trigger for: changelogs, release notes, PR titles, branch names, general git Q&A, merge conflicts, squash/rebase/amend, or inspecting existing history.",
+  "iterations_run": 5,
+  "holdout": 0.4,
+  "train_size": 15,
+  "test_size": 8,
+  "history": [
+    {
+      "iteration": 1,
+      "description": "Plan, isolate, and apply clean Git commits that match the user's intent. Use this whenever the user wants to create commits, decide what belongs together, split a messy worktree into focused or cherry-pickable commits, choose what to stage, sanity-check a proposed commit split, or write or improve a commit message. Do not use it for general Git explanations, merge conflicts, changelogs, release notes, PR titles, branch names, or history rewriting unless the user is specifically asking how to structure or phrase commits.",
+      "train_passed": 9,
+      "train_failed": 6,
+      "train_total": 15,
+      "train_results": [
+        {
+          "query": "I already know roughly what changed, I just need help polishing the commit message. Current draft is `Update git skill` and it is way too vague.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I have a dirty git worktree and I want one or more reviewable commits out of it. Can you decide what belongs together and what should stay out?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "go through my staged and unstaged changes and turn them into clean commits, but keep anything that would be useful to backport in its own commit",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I think there should be two commits here: one for extracting the helper, one for requiring explicit approval before the commit happens. Can you sanity-check that split?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "my worktree is kind of messy right now. i changed `slides/05-agents/slides.md`, renamed a helper in `components/CommitPlan.vue`, and there is also some unrelated formatting noise. can you figure out what should be committed together?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Can you write a good commit message for this? The change makes the review step validate include chains and missing assets so migrated Slidev chapters stop passing local checks but failing in the full deck.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "there are a few changes in `src/git/plan.ts` and `slides/06-workflows/slides.md`. i'm not asking you to commit yet, but tell me which parts belong in the same commit and give me draft messages.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Please generate a changelog entry from these merged PR titles and ticket IDs.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "show me which files changed in the last commit and summarize the diff",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what would be a good branch name for the work that adds approval gating to our commit helper?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you suggest a better PR title? the branch is about approval gating before writing commits",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you explain the difference between `git commit` and `git commit --amend`?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I want to squash the last three commits on my feature branch into one before opening the PR",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "why does `git cherry-pick` say the commit is empty?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I accidentally committed a secret and need to rewrite history before pushing",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "I have a reusable cleanup in `src/git/`, a behavior change in the approval flow, and one tiny rename. I will probably cherry-pick part of this onto our release branch later. How would you split the commits?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "please commit only the workshop slide changes from today, not the unrelated utils cleanup i also have lying around",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Need a commit message only, no commit: we now keep mechanical renames separate from feature work so teams can cherry-pick the rename without dragging unfinished behavior changes onto the stabilization branch.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I need help resolving a merge conflict in `slides.md` after rebasing onto main",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "please show me the last 5 commit messages on this branch so I can see the style",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "write release notes from the commits since last Thursday",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I said 'commit it' earlier, but before you do that I want to know how you would group the current changes. There's a bug fix, a helper rename, and some whitespace cleanup.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "can you review this diff and tell me whether the code looks correct? no git operations needed",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "passed": 9,
+      "failed": 6,
+      "total": 15,
+      "results": [
+        {
+          "query": "I already know roughly what changed, I just need help polishing the commit message. Current draft is `Update git skill` and it is way too vague.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I have a dirty git worktree and I want one or more reviewable commits out of it. Can you decide what belongs together and what should stay out?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "go through my staged and unstaged changes and turn them into clean commits, but keep anything that would be useful to backport in its own commit",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I think there should be two commits here: one for extracting the helper, one for requiring explicit approval before the commit happens. Can you sanity-check that split?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "my worktree is kind of messy right now. i changed `slides/05-agents/slides.md`, renamed a helper in `components/CommitPlan.vue`, and there is also some unrelated formatting noise. can you figure out what should be committed together?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Can you write a good commit message for this? The change makes the review step validate include chains and missing assets so migrated Slidev chapters stop passing local checks but failing in the full deck.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "there are a few changes in `src/git/plan.ts` and `slides/06-workflows/slides.md`. i'm not asking you to commit yet, but tell me which parts belong in the same commit and give me draft messages.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Please generate a changelog entry from these merged PR titles and ticket IDs.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "show me which files changed in the last commit and summarize the diff",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what would be a good branch name for the work that adds approval gating to our commit helper?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you suggest a better PR title? the branch is about approval gating before writing commits",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you explain the difference between `git commit` and `git commit --amend`?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I want to squash the last three commits on my feature branch into one before opening the PR",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "why does `git cherry-pick` say the commit is empty?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I accidentally committed a secret and need to rewrite history before pushing",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "description": "Use this skill whenever the user wants to craft, improve, or polish a commit message, group changes into commits, split a dirty worktree into focused commits, decide what should be staged together, plan or sanity-check a commit structure, or create one or more clean commits from their changes. Trigger it for any request about what belongs in a commit, how to phrase a commit message, or how to separate changes into reviewable units \u2014 even if the user says \"don't commit yet.\" Do NOT trigger for changelogs, release notes, PR titles, branch names, general git explanations, merge conflicts, or history rewriting unless the request is specifically about structuring or wording commits.",
+      "train_passed": 10,
+      "train_failed": 5,
+      "train_total": 15,
+      "train_results": [
+        {
+          "query": "I have a dirty git worktree and I want one or more reviewable commits out of it. Can you decide what belongs together and what should stay out?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "my worktree is kind of messy right now. i changed `slides/05-agents/slides.md`, renamed a helper in `components/CommitPlan.vue`, and there is also some unrelated formatting noise. can you figure out what should be committed together?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I think there should be two commits here: one for extracting the helper, one for requiring explicit approval before the commit happens. Can you sanity-check that split?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Can you write a good commit message for this? The change makes the review step validate include chains and missing assets so migrated Slidev chapters stop passing local checks but failing in the full deck.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I already know roughly what changed, I just need help polishing the commit message. Current draft is `Update git skill` and it is way too vague.",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "go through my staged and unstaged changes and turn them into clean commits, but keep anything that would be useful to backport in its own commit",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "there are a few changes in `src/git/plan.ts` and `slides/06-workflows/slides.md`. i'm not asking you to commit yet, but tell me which parts belong in the same commit and give me draft messages.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Please generate a changelog entry from these merged PR titles and ticket IDs.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you suggest a better PR title? the branch is about approval gating before writing commits",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "show me which files changed in the last commit and summarize the diff",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what would be a good branch name for the work that adds approval gating to our commit helper?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you explain the difference between `git commit` and `git commit --amend`?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I want to squash the last three commits on my feature branch into one before opening the PR",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I accidentally committed a secret and need to rewrite history before pushing",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "why does `git cherry-pick` say the commit is empty?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "Need a commit message only, no commit: we now keep mechanical renames separate from feature work so teams can cherry-pick the rename without dragging unfinished behavior changes onto the stabilization branch.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I have a reusable cleanup in `src/git/`, a behavior change in the approval flow, and one tiny rename. I will probably cherry-pick part of this onto our release branch later. How would you split the commits?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "please commit only the workshop slide changes from today, not the unrelated utils cleanup i also have lying around",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I said 'commit it' earlier, but before you do that I want to know how you would group the current changes. There's a bug fix, a helper rename, and some whitespace cleanup.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "write release notes from the commits since last Thursday",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you review this diff and tell me whether the code looks correct? no git operations needed",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I need help resolving a merge conflict in `slides.md` after rebasing onto main",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "please show me the last 5 commit messages on this branch so I can see the style",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "passed": 10,
+      "failed": 5,
+      "total": 15,
+      "results": [
+        {
+          "query": "I have a dirty git worktree and I want one or more reviewable commits out of it. Can you decide what belongs together and what should stay out?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "my worktree is kind of messy right now. i changed `slides/05-agents/slides.md`, renamed a helper in `components/CommitPlan.vue`, and there is also some unrelated formatting noise. can you figure out what should be committed together?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I think there should be two commits here: one for extracting the helper, one for requiring explicit approval before the commit happens. Can you sanity-check that split?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Can you write a good commit message for this? The change makes the review step validate include chains and missing assets so migrated Slidev chapters stop passing local checks but failing in the full deck.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I already know roughly what changed, I just need help polishing the commit message. Current draft is `Update git skill` and it is way too vague.",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "go through my staged and unstaged changes and turn them into clean commits, but keep anything that would be useful to backport in its own commit",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "there are a few changes in `src/git/plan.ts` and `slides/06-workflows/slides.md`. i'm not asking you to commit yet, but tell me which parts belong in the same commit and give me draft messages.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Please generate a changelog entry from these merged PR titles and ticket IDs.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you suggest a better PR title? the branch is about approval gating before writing commits",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "show me which files changed in the last commit and summarize the diff",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what would be a good branch name for the work that adds approval gating to our commit helper?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you explain the difference between `git commit` and `git commit --amend`?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I want to squash the last three commits on my feature branch into one before opening the PR",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I accidentally committed a secret and need to rewrite history before pushing",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "why does `git cherry-pick` say the commit is empty?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "description": "Use this skill for anything related to crafting commits: writing or polishing commit messages, splitting a dirty worktree into clean commits, deciding what to stage together, grouping or separating changes into reviewable commit units, sanity-checking a proposed commit split, or turning staged/unstaged changes into focused commits. Trigger even when the user says \"don't commit yet\" \u2014 planning commit structure and drafting messages counts. Key signals: \"commit message\", \"commit\", \"stage\", \"worktree\", \"what belongs together\", \"backport\", \"cherry-pick\", combined with intent to organize or describe changes. Do NOT trigger for changelogs, release notes, PR titles, branch names, general git Q&A, merge conflicts, or history rewriting (squash, rebase, amend) unless the request is specifically about structuring or wording new commits.",
+      "train_passed": 9,
+      "train_failed": 6,
+      "train_total": 15,
+      "train_results": [
+        {
+          "query": "I have a dirty git worktree and I want one or more reviewable commits out of it. Can you decide what belongs together and what should stay out?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Can you write a good commit message for this? The change makes the review step validate include chains and missing assets so migrated Slidev chapters stop passing local checks but failing in the full deck.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "go through my staged and unstaged changes and turn them into clean commits, but keep anything that would be useful to backport in its own commit",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "my worktree is kind of messy right now. i changed `slides/05-agents/slides.md`, renamed a helper in `components/CommitPlan.vue`, and there is also some unrelated formatting noise. can you figure out what should be committed together?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I think there should be two commits here: one for extracting the helper, one for requiring explicit approval before the commit happens. Can you sanity-check that split?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I already know roughly what changed, I just need help polishing the commit message. Current draft is `Update git skill` and it is way too vague.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "there are a few changes in `src/git/plan.ts` and `slides/06-workflows/slides.md`. i'm not asking you to commit yet, but tell me which parts belong in the same commit and give me draft messages.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "show me which files changed in the last commit and summarize the diff",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what would be a good branch name for the work that adds approval gating to our commit helper?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "Please generate a changelog entry from these merged PR titles and ticket IDs.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you suggest a better PR title? the branch is about approval gating before writing commits",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you explain the difference between `git commit` and `git commit --amend`?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I want to squash the last three commits on my feature branch into one before opening the PR",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "why does `git cherry-pick` say the commit is empty?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I accidentally committed a secret and need to rewrite history before pushing",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "test_passed": 6,
+      "test_failed": 2,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "Need a commit message only, no commit: we now keep mechanical renames separate from feature work so teams can cherry-pick the rename without dragging unfinished behavior changes onto the stabilization branch.",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I have a reusable cleanup in `src/git/`, a behavior change in the approval flow, and one tiny rename. I will probably cherry-pick part of this onto our release branch later. How would you split the commits?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "please commit only the workshop slide changes from today, not the unrelated utils cleanup i also have lying around",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I said 'commit it' earlier, but before you do that I want to know how you would group the current changes. There's a bug fix, a helper rename, and some whitespace cleanup.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I need help resolving a merge conflict in `slides.md` after rebasing onto main",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "write release notes from the commits since last Thursday",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you review this diff and tell me whether the code looks correct? no git operations needed",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "please show me the last 5 commit messages on this branch so I can see the style",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "passed": 9,
+      "failed": 6,
+      "total": 15,
+      "results": [
+        {
+          "query": "I have a dirty git worktree and I want one or more reviewable commits out of it. Can you decide what belongs together and what should stay out?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Can you write a good commit message for this? The change makes the review step validate include chains and missing assets so migrated Slidev chapters stop passing local checks but failing in the full deck.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "go through my staged and unstaged changes and turn them into clean commits, but keep anything that would be useful to backport in its own commit",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "my worktree is kind of messy right now. i changed `slides/05-agents/slides.md`, renamed a helper in `components/CommitPlan.vue`, and there is also some unrelated formatting noise. can you figure out what should be committed together?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I think there should be two commits here: one for extracting the helper, one for requiring explicit approval before the commit happens. Can you sanity-check that split?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I already know roughly what changed, I just need help polishing the commit message. Current draft is `Update git skill` and it is way too vague.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "there are a few changes in `src/git/plan.ts` and `slides/06-workflows/slides.md`. i'm not asking you to commit yet, but tell me which parts belong in the same commit and give me draft messages.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "show me which files changed in the last commit and summarize the diff",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what would be a good branch name for the work that adds approval gating to our commit helper?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "Please generate a changelog entry from these merged PR titles and ticket IDs.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you suggest a better PR title? the branch is about approval gating before writing commits",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you explain the difference between `git commit` and `git commit --amend`?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I want to squash the last three commits on my feature branch into one before opening the PR",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "why does `git cherry-pick` say the commit is empty?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I accidentally committed a secret and need to rewrite history before pushing",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 4,
+      "description": "Use this skill when the user wants help with commits \u2014 creating, planning, or wording them. This includes: turning a messy or dirty worktree into focused commits, writing or polishing a commit message, deciding what to stage together, splitting changes into separate commits, grouping related hunks, keeping backport-friendly changes isolated, or reviewing a proposed commit structure. Trigger whenever the user describes their changes and wants them organized into commits, even if they say \"don't commit yet\" \u2014 planning and drafting counts. Also trigger when the user has a draft commit message they want improved. Do NOT trigger for: changelogs, release notes, PR titles, branch names, general git Q&A, merge conflicts, squash/rebase/amend, or inspecting existing history.",
+      "train_passed": 9,
+      "train_failed": 6,
+      "train_total": 15,
+      "train_results": [
+        {
+          "query": "go through my staged and unstaged changes and turn them into clean commits, but keep anything that would be useful to backport in its own commit",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Can you write a good commit message for this? The change makes the review step validate include chains and missing assets so migrated Slidev chapters stop passing local checks but failing in the full deck.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I have a dirty git worktree and I want one or more reviewable commits out of it. Can you decide what belongs together and what should stay out?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "my worktree is kind of messy right now. i changed `slides/05-agents/slides.md`, renamed a helper in `components/CommitPlan.vue`, and there is also some unrelated formatting noise. can you figure out what should be committed together?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I think there should be two commits here: one for extracting the helper, one for requiring explicit approval before the commit happens. Can you sanity-check that split?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I already know roughly what changed, I just need help polishing the commit message. Current draft is `Update git skill` and it is way too vague.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "there are a few changes in `src/git/plan.ts` and `slides/06-workflows/slides.md`. i'm not asking you to commit yet, but tell me which parts belong in the same commit and give me draft messages.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Please generate a changelog entry from these merged PR titles and ticket IDs.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "show me which files changed in the last commit and summarize the diff",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you suggest a better PR title? the branch is about approval gating before writing commits",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what would be a good branch name for the work that adds approval gating to our commit helper?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you explain the difference between `git commit` and `git commit --amend`?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I want to squash the last three commits on my feature branch into one before opening the PR",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I accidentally committed a secret and need to rewrite history before pushing",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "why does `git cherry-pick` say the commit is empty?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "test_passed": 5,
+      "test_failed": 3,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "please commit only the workshop slide changes from today, not the unrelated utils cleanup i also have lying around",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "Need a commit message only, no commit: we now keep mechanical renames separate from feature work so teams can cherry-pick the rename without dragging unfinished behavior changes onto the stabilization branch.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I have a reusable cleanup in `src/git/`, a behavior change in the approval flow, and one tiny rename. I will probably cherry-pick part of this onto our release branch later. How would you split the commits?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I said 'commit it' earlier, but before you do that I want to know how you would group the current changes. There's a bug fix, a helper rename, and some whitespace cleanup.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "write release notes from the commits since last Thursday",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "please show me the last 5 commit messages on this branch so I can see the style",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I need help resolving a merge conflict in `slides.md` after rebasing onto main",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you review this diff and tell me whether the code looks correct? no git operations needed",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "passed": 9,
+      "failed": 6,
+      "total": 15,
+      "results": [
+        {
+          "query": "go through my staged and unstaged changes and turn them into clean commits, but keep anything that would be useful to backport in its own commit",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Can you write a good commit message for this? The change makes the review step validate include chains and missing assets so migrated Slidev chapters stop passing local checks but failing in the full deck.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I have a dirty git worktree and I want one or more reviewable commits out of it. Can you decide what belongs together and what should stay out?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "my worktree is kind of messy right now. i changed `slides/05-agents/slides.md`, renamed a helper in `components/CommitPlan.vue`, and there is also some unrelated formatting noise. can you figure out what should be committed together?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I think there should be two commits here: one for extracting the helper, one for requiring explicit approval before the commit happens. Can you sanity-check that split?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I already know roughly what changed, I just need help polishing the commit message. Current draft is `Update git skill` and it is way too vague.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "there are a few changes in `src/git/plan.ts` and `slides/06-workflows/slides.md`. i'm not asking you to commit yet, but tell me which parts belong in the same commit and give me draft messages.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Please generate a changelog entry from these merged PR titles and ticket IDs.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "show me which files changed in the last commit and summarize the diff",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you suggest a better PR title? the branch is about approval gating before writing commits",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what would be a good branch name for the work that adds approval gating to our commit helper?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you explain the difference between `git commit` and `git commit --amend`?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I want to squash the last three commits on my feature branch into one before opening the PR",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I accidentally committed a secret and need to rewrite history before pushing",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "why does `git cherry-pick` say the commit is empty?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 5,
+      "description": "Trigger this skill any time the user's request involves creating, splitting, grouping, or planning git commits, or writing/improving commit messages. This covers: messy worktrees that need to become clean commits, figuring out what changes belong in the same commit, isolating backport-worthy changes, reviewing or sanity-checking a proposed commit split, drafting commit messages from a description of changes, and polishing vague or draft commit messages. Trigger even when the user lists specific files or describes diffs and asks how to organize them \u2014 that is commit planning. Trigger even if the user says \"don't commit yet.\" Do NOT trigger for: changelogs, release notes, PR titles, branch names, general git Q&A, merge conflicts, squash/rebase/amend, or inspecting existing history.",
+      "train_passed": 8,
+      "train_failed": 7,
+      "train_total": 15,
+      "train_results": [
+        {
+          "query": "I have a dirty git worktree and I want one or more reviewable commits out of it. Can you decide what belongs together and what should stay out?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "my worktree is kind of messy right now. i changed `slides/05-agents/slides.md`, renamed a helper in `components/CommitPlan.vue`, and there is also some unrelated formatting noise. can you figure out what should be committed together?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I think there should be two commits here: one for extracting the helper, one for requiring explicit approval before the commit happens. Can you sanity-check that split?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "go through my staged and unstaged changes and turn them into clean commits, but keep anything that would be useful to backport in its own commit",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Can you write a good commit message for this? The change makes the review step validate include chains and missing assets so migrated Slidev chapters stop passing local checks but failing in the full deck.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I already know roughly what changed, I just need help polishing the commit message. Current draft is `Update git skill` and it is way too vague.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Please generate a changelog entry from these merged PR titles and ticket IDs.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "there are a few changes in `src/git/plan.ts` and `slides/06-workflows/slides.md`. i'm not asking you to commit yet, but tell me which parts belong in the same commit and give me draft messages.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "what would be a good branch name for the work that adds approval gating to our commit helper?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you suggest a better PR title? the branch is about approval gating before writing commits",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you explain the difference between `git commit` and `git commit --amend`?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I want to squash the last three commits on my feature branch into one before opening the PR",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "show me which files changed in the last commit and summarize the diff",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I accidentally committed a secret and need to rewrite history before pushing",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "why does `git cherry-pick` say the commit is empty?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "test_passed": 5,
+      "test_failed": 3,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "Need a commit message only, no commit: we now keep mechanical renames separate from feature work so teams can cherry-pick the rename without dragging unfinished behavior changes onto the stabilization branch.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "please commit only the workshop slide changes from today, not the unrelated utils cleanup i also have lying around",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I have a reusable cleanup in `src/git/`, a behavior change in the approval flow, and one tiny rename. I will probably cherry-pick part of this onto our release branch later. How would you split the commits?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "please show me the last 5 commit messages on this branch so I can see the style",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "write release notes from the commits since last Thursday",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I said 'commit it' earlier, but before you do that I want to know how you would group the current changes. There's a bug fix, a helper rename, and some whitespace cleanup.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "can you review this diff and tell me whether the code looks correct? no git operations needed",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I need help resolving a merge conflict in `slides.md` after rebasing onto main",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "passed": 8,
+      "failed": 7,
+      "total": 15,
+      "results": [
+        {
+          "query": "I have a dirty git worktree and I want one or more reviewable commits out of it. Can you decide what belongs together and what should stay out?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "my worktree is kind of messy right now. i changed `slides/05-agents/slides.md`, renamed a helper in `components/CommitPlan.vue`, and there is also some unrelated formatting noise. can you figure out what should be committed together?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I think there should be two commits here: one for extracting the helper, one for requiring explicit approval before the commit happens. Can you sanity-check that split?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "go through my staged and unstaged changes and turn them into clean commits, but keep anything that would be useful to backport in its own commit",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Can you write a good commit message for this? The change makes the review step validate include chains and missing assets so migrated Slidev chapters stop passing local checks but failing in the full deck.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "I already know roughly what changed, I just need help polishing the commit message. Current draft is `Update git skill` and it is way too vague.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "Please generate a changelog entry from these merged PR titles and ticket IDs.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "there are a few changes in `src/git/plan.ts` and `slides/06-workflows/slides.md`. i'm not asking you to commit yet, but tell me which parts belong in the same commit and give me draft messages.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "what would be a good branch name for the work that adds approval gating to our commit helper?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you suggest a better PR title? the branch is about approval gating before writing commits",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "can you explain the difference between `git commit` and `git commit --amend`?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I want to squash the last three commits on my feature branch into one before opening the PR",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "show me which files changed in the last commit and summarize the diff",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "I accidentally committed a secret and need to rewrite history before pushing",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "why does `git cherry-pick` say the commit is empty?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ]
+    }
+  ]
+}
