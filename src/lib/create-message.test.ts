@@ -2,12 +2,12 @@ import { describe, expect, it } from "vitest";
 import { applyResultToMessage } from "./create-message";
 
 describe("applyResultToMessage", () => {
-  it("sets payload to true when the window is not completely in shadow", () => {
+  it("sets payload to true when the sun shines into the window", () => {
     expect(
       applyResultToMessage(
         "sunInWindow",
         { payload: "previous", keep: true },
-        false,
+        true,
       ),
     ).toEqual({
       topic: "sunInWindow",
@@ -16,9 +16,9 @@ describe("applyResultToMessage", () => {
     });
   });
 
-  it("sets payload to false when the window is completely in shadow", () => {
+  it("sets payload to false when the sun does not reach the window", () => {
     expect(
-      applyResultToMessage("sunInWindow", { payload: "previous" }, true),
+      applyResultToMessage("sunInWindow", { payload: "previous" }, false),
     ).toEqual({
       topic: "sunInWindow",
       payload: false,
