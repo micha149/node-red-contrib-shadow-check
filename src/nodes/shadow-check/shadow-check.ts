@@ -1,6 +1,9 @@
 import * as v from "valibot";
 import { calculateShadow } from "../../lib/calculate-shadow";
-import { checkIfWindowInShadow } from "../../lib/check-if-window-in-shadow";
+import {
+  calculateSunlitFraction,
+  isWindowSunlit,
+} from "../../lib/calculate-sunlit-fraction";
 import { applyResultToMessage } from "../../lib/create-message";
 import { createSunPositionSchema } from "../../lib/payload-schema";
 import {
@@ -76,13 +79,10 @@ const nodeInit = (RED: NodeRedRuntime): void => {
           overhangTop + halfHeight,
           sunPos,
         );
-        const windowCompletelyInShadow = checkIfWindowInShadow(
-          width,
-          height,
-          shadow,
-        );
+        const sunlitFraction = calculateSunlitFraction(width, height, shadow);
+        const sunInWindow = isWindowSunlit(sunlitFraction);
 
-        nodeSend(applyResultToMessage(topic, msg, windowCompletelyInShadow));
+        nodeSend(applyResultToMessage(topic, msg, sunInWindow));
 
         if (done) {
           done();

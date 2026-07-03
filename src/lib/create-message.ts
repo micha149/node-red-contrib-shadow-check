@@ -7,9 +7,9 @@ type Message = {
 export const applyResultToMessage = (
   topic: string,
   msg: Message,
-  windowCompletelyInShadow: boolean,
+  sunInWindow: boolean,
 ): Message => ({
   ...msg,
   topic,
-  payload: !windowCompletelyInShadow,
+  payload: sunInWindow,
 });
